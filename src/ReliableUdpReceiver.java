@@ -36,11 +36,11 @@ public class ReliableUdpReceiver {
             // Create a datagram packet to hold incomming UDP packet.
             DatagramPacket request = new DatagramPacket(new byte[1024], 1024);
             
-            System.out.println("Waiting for requests\n");
+            System.out.println("Waiting for requests");
             // Block until the host receives a UDP packet.
             socket.receive(request);
 
-            // Print the recieved data.
+
             if(currentAck != printData(request)){
                 System.out.println("ACK number desynchronised.\n");
                 continue;
@@ -48,7 +48,7 @@ public class ReliableUdpReceiver {
             
             // Decide whether to reply, or simulate packet loss.
             if (random.nextDouble() < LOSS_RATE) {
-                System.out.println(" ACK not sent.");
+                System.out.println("ACK not sent. \r\n");
                 continue;
             }
 
@@ -63,7 +63,7 @@ public class ReliableUdpReceiver {
             byte[] buf = (currentAck + ";ACK").getBytes(); // Conteudo
             DatagramPacket reply = new DatagramPacket(buf, buf.length, clientHost, clientPort);
             socket.send(reply);
-            System.out.println("ACK sent.");
+            System.out.println("ACK sent. \r\n");
             currentAck++;
         }
     }

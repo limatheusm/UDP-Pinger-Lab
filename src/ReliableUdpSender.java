@@ -56,7 +56,7 @@ public class ReliableUdpSender {
                 }
             }
             catch (SocketTimeoutException e) {
-                System.out.println("Pacote de ACK" + ackNum + " perdido. Tentando enviar novamente");
+                System.out.println("Pacote de ACK " + ackNum + " perdido. Tentando enviar novamente");
                 ackNum--;
             }
         }
